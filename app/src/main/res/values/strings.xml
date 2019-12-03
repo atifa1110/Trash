@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">TrashApp</string>
+
+    <string name="loginnim">Username</string>
+    <string name="loginpassword">Password</string>
+    <string name="login">Login</string>
+    <string name="tulisantrash">Trash Can</string>
+    <string name="loginGuest">Belum punya akun? Daftar</string>
+    <string name="daftarnama">Nama</string>
+    <string name="daftarusername">Username</string>
+    <string name="daftarpassword">Password</string>
+    <string name="daftar">Daftar</string>
+    <string name="kembali">Kembali</string>
+    <string name="punyaakun">Sudah Punya akun? Login</string>
+    <string name="Remember">Remember</string>
+    <string name="forgot">Lupa Password?</string>
+    <string name="loginemail">Email</string>
+    <string name="daftaremail">Email</string>
+</resources>
