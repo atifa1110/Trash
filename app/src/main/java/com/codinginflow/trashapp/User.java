@@ -2,36 +2,40 @@ package com.codinginflow.trashapp;
 
 class User {
 
-    private String nama, email,password;
+    private String uid;
+    private String nama;
+    private String email;
 
-    User(String nama, String email, String password){
 
+
+    public User(String uid, String nama, String email) {
+        this.uid = uid;
         this.nama = nama;
         this.email = email;
-        this.password = password;
+
     }
 
-    public String getNama() {
-        return nama;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public void setNama(String nama) {
         this.nama = nama;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getUid() {
+        return uid;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

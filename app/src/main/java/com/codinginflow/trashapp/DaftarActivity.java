@@ -24,16 +24,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.vansuita.pickimage.bean.PickResult;
-import com.vansuita.pickimage.bundle.PickSetup;
-import com.vansuita.pickimage.dialog.PickImageDialog;
-import com.vansuita.pickimage.listeners.IPickResult;
-
 
 public class DaftarActivity extends AppCompatActivity implements View.OnClickListener{
 
     private ImageView ivFoto;
-    private EditText etNama, etEmail, etPassword, etConPassword, etAlamat, etKecamatan, etKota, etProvinsi, etNoTel , etKodepos;
+    private EditText etNama, etEmail, etPassword;
     private Button btnRegister;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -54,7 +49,7 @@ public class DaftarActivity extends AppCompatActivity implements View.OnClickLis
         progress.setMessage("creating account, please wait");
 
         btnRegister.setOnClickListener(this);
-        ivFoto.setOnClickListener(this);
+        //ivFoto.setOnClickListener(this);
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -69,9 +64,9 @@ public class DaftarActivity extends AppCompatActivity implements View.OnClickLis
                 progress.show();
                 register();
                 break;
-            case R.id.iv_register_foto :
-                pickFoto();
-                break;
+//            case R.id.iv_register_foto :
+//                pickFoto();
+//                break;
         }
     }
 
@@ -100,24 +95,18 @@ public class DaftarActivity extends AppCompatActivity implements View.OnClickLis
         String uid = mAuth.getCurrentUser().getUid();
         String nama = etNama.getText().toString();
         String email = etEmail.getText().toString();
-        String alamat = etAlamat.getText().toString();
-        String kecamatan = etKecamatan.getText().toString();
-        String kota = etKota.getText().toString();
-        String provinsi = etProvinsi.getText().toString();
-        String no_telp = etNoTel.getText().toString();
-        String kode_pos = etKodepos.getText().toString();
 
-        User user = new User(uid, nama, email,password);
+        User user = new User(uid, nama, email);
         mDatabase.child("User").child(uid).setValue(user);
-        uploadFoto(uid);
+        //uploadFoto(uid);
     }
     private void uploadFoto(String uid) {
         StorageReference ref = mStorage.child("User/" + uid + ".jpg");
         ref.putFile(uri);
     }
-    private void pickFoto(){
-        PickImageDialog.build(new PickSetup()).show(this);
-    }
+//    private void pickFoto(){
+//        PickImageDialog.build(new PickSetup()).show(this);
+//    }
 
     private boolean inputValidated(){
         boolean res = true;
@@ -130,54 +119,30 @@ public class DaftarActivity extends AppCompatActivity implements View.OnClickLis
         }if (etPassword.getText().toString().isEmpty()){
             res = false;
             etPassword.setError("This is required");
-        }if (etConPassword.getText().toString().isEmpty()){
-            res = false;
-            etConPassword.setError("This is required");
-        } else if (!(etConPassword.getText().toString().equals(etPassword.getText().toString()))){
-            res = false;
-            etConPassword.setError("Password does not match");
-        } if (etAlamat.getText().toString().isEmpty()){
-            res = false;
-            etAlamat.setError("This is required");
-        }if (etKecamatan.getText().toString().isEmpty()){
-            res = false;
-            etKecamatan.setError("This is required");
-        }if (etKota.getText().toString().isEmpty()){
-            res = false;
-            etKota.setError("This is required");
-        }if (etProvinsi.getText().toString().isEmpty()){
-            res = false;
-            etProvinsi.setError("This is required");
-        }if (etNoTel.getText().toString().isEmpty()){
-            res = false;
-            etNoTel.setError("This is required");
-        }if (etKodepos.getText().toString().isEmpty()){
-            res = false;
-            etKodepos.setError("This is required");
         }
         return res;
     }
 
-    @Override
-    public void onPickResult(PickResult r) {
-        if (r.getError() == null) {
-            //If you want the Uri.
-            //Mandatory to refresh image from Uri.
-            //getImageView().setImageURI(null);
-
-            //Setting the real returned image.
-            //getImageView().setImageURI(r.getUri());
-
-            //If you want the Bitmap.
-            uri = r.getUri();
-            ivFoto.setImageBitmap(r.getBitmap());
-
-            //Image path
-            //r.getPath();
-        } else {
-            //Handle possible errors
-            //TODO: do what you have to do with r.getError();
-            Toast.makeText(this, r.getError().getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
+//    @Override
+//    public void onPickResult(PickResult r) {
+//        if (r.getError() == null) {
+//            //If you want the Uri.
+//            //Mandatory to refresh image from Uri.
+//            //getImageView().setImageURI(null);
+//
+//            //Setting the real returned image.
+//            //getImageView().setImageURI(r.getUri());
+//
+//            //If you want the Bitmap.
+//            uri = r.getUri();
+//            ivFoto.setImageBitmap(r.getBitmap());
+//
+//            //Image path
+//            //r.getPath();
+//        } else {
+//            //Handle possible errors
+//            //TODO: do what you have to do with r.getError();
+//            Toast.makeText(this, r.getError().getMessage(), Toast.LENGTH_LONG).show();
+//        }
+//    }
 }

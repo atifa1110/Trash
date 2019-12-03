@@ -23,8 +23,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private AlertDialog.Builder dialogBuilder;
-    private AlertDialog alertDialog;
     private EditText etEmail, etPassword;
     private Button btnLogin;
     private FirebaseAuth mAuth;
@@ -37,6 +35,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         etEmail = findViewById(R.id.et_login_username);
         etPassword = findViewById(R.id.et_login_password);
+        btnLogin = findViewById(R.id.btn_login_login);
 
         //Daftar
         tvDaftar = findViewById(R.id.tv_login_daftar);
@@ -49,12 +48,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //forgot password
         forgotPass = findViewById(R.id.tv_login_forgot);
 
-        forgotPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,ForgotPasswordActivity.class));
-            }
-        });
+        btnLogin.setOnClickListener(this);
+        forgotPass.setOnClickListener(this);
+        tvDaftar.setOnClickListener(this);
 
     }
     @Override
@@ -68,28 +64,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
     @Override
     public void onClick(View v) {
+        Intent intent;
         switch (v.getId()){
             case R.id.tv_login_daftar:
-                Intent intent = new Intent(this, DaftarActivity.class);
+                intent = new Intent(this, DaftarActivity.class);
                 startActivity(intent);
                 break;
             case R.id.btn_login_login :
                 progress.show();
                 SignIn();
                 break;
+            case R.id.btn_forgot_password_simpan :
+                intent = new Intent(this,ForgotPasswordActivity.class);
+                startActivity(intent);
+                break;
         }
     }
     private void SignIn(){
         if (inputValidated()){
-            String email = etEmail.getText().toString();
-            String password = etPassword.getText().toString();
+            String email = etEmail.getText().toString().trim();
+            String password = etPassword.getText().toString().trim();
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    showProgressDialog();
                     if (task.isSuccessful()){
                         progress.dismiss();
-                        Toast.makeText(getApplicationContext(), "sign in successfull", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Sign in successfull", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                     } else{
@@ -117,13 +117,4 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return res;
     }
 
-    public void showProgressDialog() {
-        dialogBuilder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.progress_dialog, null);
-        dialogBuilder.setView(dialogView);
-        dialogBuilder.setCancelable(false);
-        alertDialog = dialogBuilder.create();
-        alertDialog.show();
-    }
 }
