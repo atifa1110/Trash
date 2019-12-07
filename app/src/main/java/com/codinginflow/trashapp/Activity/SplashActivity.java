@@ -1,12 +1,18 @@
-package com.codinginflow.trashapp;
+package com.codinginflow.trashapp.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
+import com.codinginflow.trashapp.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
@@ -32,6 +38,7 @@ public class SplashActivity extends AppCompatActivity {
         mDelayHandler = new Handler();
         mDelayHandler.postDelayed(runnable,SPLASH_DELAY);
     }
+
     private void navigateToLoginActivitiy() {
         Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
