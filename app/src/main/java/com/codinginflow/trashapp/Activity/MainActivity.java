@@ -20,6 +20,7 @@ import com.codinginflow.trashapp.Fragment.PesananFragment;
 import com.codinginflow.trashapp.Fragment.ProfileFragment;
 import com.codinginflow.trashapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.smarteist.autoimageslider.SliderLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bottomNavigationMenu = findViewById(R.id.bn_main_bottomnavigation);
-//        toolbar = findViewById(R.id.toolbar);
-//        toolbar.setTitle("TrashApp");
-//        setSupportActionBar(toolbar);
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Ngempulin");
+        setSupportActionBar(toolbar);
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fl_main_main,new HomeFragment()).commit();
@@ -49,12 +50,15 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.menu_main_pesanan:
                         ft.replace(R.id.fl_main_main,new PesananFragment()).commit();
+                        toolbar.setTitle("Pesanan");
                         break;
                     case R.id.menu_main_chat:
                         ft.replace(R.id.fl_main_main,new ChatFragment()).commit();
+                        toolbar.setTitle("Chat");
                         break;
                     case R.id.menu_main_profile:
                         ft.replace(R.id.fl_main_main,new ProfileFragment()).commit();
+                        toolbar.setTitle("Profile");
                         break;
                 }
                 return false;

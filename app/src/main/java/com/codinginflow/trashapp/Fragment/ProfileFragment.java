@@ -16,8 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.codinginflow.trashapp.Activity.LoginActivity;
-import com.codinginflow.trashapp.EditProfileActivity;
-import com.codinginflow.trashapp.GantiPasswordActivity;
+import com.codinginflow.trashapp.Activity.EditProfileActivity;
+import com.codinginflow.trashapp.Activity.GantiPasswordActivity;
 import com.codinginflow.trashapp.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;

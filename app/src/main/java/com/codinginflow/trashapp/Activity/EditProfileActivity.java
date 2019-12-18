@@ -1,8 +1,10 @@
-package com.codinginflow.trashapp;
+package com.codinginflow.trashapp.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.codinginflow.trashapp.R;
 
 public class EditProfileActivity extends AppCompatActivity {
 
