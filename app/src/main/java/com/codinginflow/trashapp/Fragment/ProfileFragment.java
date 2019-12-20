@@ -127,7 +127,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                 startActivity(new Intent(getContext(), EditProfileActivity.class));
                 break;
             case R.id.tv_profile_ganti_pass :
-                startActivity(new Intent(getContext(), GantiPasswordActivity.class));
+                startActivity(new Intent(getActivity().getApplication(), GantiPasswordActivity.class));
+
                 break;
             case R.id.tv_profile_syarat_dan_ketentuan :
                 break;
