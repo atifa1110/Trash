@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class DaftarActivity extends AppCompatActivity implements View.OnClickListener {
+public class DaftarPengepulActivity extends AppCompatActivity implements View.OnClickListener{
 
     private ImageView ivFoto;
     private EditText etNama, etEmail, etPassword, etAlamat, etKodepos, etNomerTelpon;
@@ -41,7 +41,7 @@ public class DaftarActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_daftar);
+        setContentView(R.layout.activity_daftar_pengepul);
 
         etNama = findViewById(R.id.et_daftar_nama);
         etEmail = findViewById(R.id.et_daftar_username);
@@ -72,7 +72,7 @@ public class DaftarActivity extends AppCompatActivity implements View.OnClickLis
                 register();
                 break;
             case R.id.tv_daftar_kembali:
-                startActivity(new Intent(DaftarActivity.this, LoginActivity.class));
+                startActivity(new Intent(DaftarPengepulActivity.this, LoginActivity.class));
                 break;
         }
     }
@@ -86,12 +86,12 @@ public class DaftarActivity extends AppCompatActivity implements View.OnClickLis
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         uploadDataToDatabase();
-                        Toast.makeText(DaftarActivity.this, "User Created", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(DaftarActivity.this, LoginActivity.class);
+                        Toast.makeText(DaftarPengepulActivity.this, "User Pengepul Created", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(DaftarPengepulActivity.this, LoginActivity.class);
                         startActivity(intent);
                         progress.dismiss();
                     } else {
-                        Toast.makeText(DaftarActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(DaftarPengepulActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         progress.dismiss();
                     }
                 }
@@ -108,12 +108,12 @@ public class DaftarActivity extends AppCompatActivity implements View.OnClickLis
         String notelpon = etNomerTelpon.getText().toString();
 
         User user = new User(uid, nama,email,alamat,kodepos,notelpon);
-        mDatabase.child("User").child(uid).setValue(user);
+        mDatabase.child("Pengepul").child(uid).setValue(user);
         //uploadFoto(uid);
     }
 
     private void uploadFoto(String uid) {
-        StorageReference ref = mStorage.child("User/" + uid + ".jpg");
+        StorageReference ref = mStorage.child("Pengepul/" + uid + ".jpg");
         ref.putFile(uri);
     }
 //    private void pickFoto(){
@@ -150,25 +150,3 @@ public class DaftarActivity extends AppCompatActivity implements View.OnClickLis
     }
 }
 
-//    @Override
-//    public void onPickResult(PickResult r) {
-//        if (r.getError() == null) {
-//            //If you want the Uri.
-//            //Mandatory to refresh image from Uri.
-//            //getImageView().setImageURI(null);
-//
-//            //Setting the real returned image.
-//            //getImageView().setImageURI(r.getUri());
-//
-//            //If you want the Bitmap.
-//            uri = r.getUri();
-//            ivFoto.setImageBitmap(r.getBitmap());
-//
-//            //Image path
-//            //r.getPath();
-//        } else {
-//            //Handle possible errors
-//            //TODO: do what you have to do with r.getError();
-//            Toast.makeText(this, r.getError().getMessage(), Toast.LENGTH_LONG).show();
-//        }
-//    }}

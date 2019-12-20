@@ -9,6 +9,10 @@ public class Pengepul {
     private String kodepos;
     private String nomertelpon;
 
+    public Pengepul(){
+
+    }
+
     public Pengepul(String uid, String nama, String namaUsaha, String alamatUsaha, String kodepos, String nomertelpon) {
         this.uid = uid;
         this.nama = nama;

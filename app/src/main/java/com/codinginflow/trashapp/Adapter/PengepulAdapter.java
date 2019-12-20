@@ -37,12 +37,13 @@ public class PengepulAdapter extends RecyclerView.Adapter<PengepulAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull PengepulAdapter.MyViewHolder holder, int position) {
-        holder.nama.setText(pengepuls.get(position).getNama());
+        final Pengepul pengepul = pengepuls.get(position);
+        holder.nama.setText(pengepul.getNama());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ChatActivity.class);
-                intent.putExtra("Pengepul",pengepuls);
+                intent.putExtra("pengepulid",pengepul.getUid());
                 context.startActivity(intent);
             }
         });

@@ -41,29 +41,20 @@ public class KategoriActivity extends AppCompatActivity {
         databaseReference.child("Pengepul").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ArrayList<Pengepul> itemProduks = new ArrayList<>();
+                ArrayList<Pengepul> item = new ArrayList<>();
                 for (DataSnapshot d:dataSnapshot.getChildren()) {
                     String kategori = d.child("kategori").getValue().toString();
                     if (sKategori.equals(kategori)){
                         getSupportActionBar().setTitle(kategori);
                         String id = d.getKey(),
-                                nama = d.child("nama").getValue().toString(),
-                                hargaAwal = d.child("hargaAwal").getValue().toString(),
-                                hargaPotongan = d.child("hargaPotongan").getValue().toString(),
-                                deskripsi = d.child("deskripsi").getValue().toString();
-                        int jumlahJoin = Integer.parseInt(d.child("jumlahJoin").getValue().toString()),
-                                maxJoin = Integer.parseInt(d.child("maxJoin").getValue().toString());
-                        String [] link = new String[(int) d.child("linkGambar").getChildrenCount()];
-                        for (int i = 0; i <link.length ; i++) {
-                            link[i] = d.child("linkGambar").child(String.valueOf(i+1)).getValue().toString();
-                        }
-                        Pengepul pengepul = new itemProduk(id,nama,kategori,hargaAwal,hargaPotongan,deskripsi,jumlahJoin,maxJoin,link);
-                        itemProduks.add(itemProduk);
+                                nama = d.child("nama").getValue().toString();
+                        Pengepul pengepul = new Pengepul();
+                        pengepul.getNama();
+                        item.add(pengepul);
                     }
-
                 }
-                produkAdapter = new ProdukBaruAdapter(KategoriActivity.this,itemProduks);
-                recyclerView.setAdapter(produkAdapter);
+                PengepulAdapter pen = new PengepulAdapter(KategoriActivity.this,item);
+                recyclerView.setAdapter(pen);
             }
 
             @Override

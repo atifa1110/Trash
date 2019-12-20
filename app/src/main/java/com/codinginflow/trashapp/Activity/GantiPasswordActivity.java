@@ -9,12 +9,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.codinginflow.trashapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,21 +23,22 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class GantiPasswordActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private TextInputEditText passBaru, konfBaru ,passLama;
+    private EditText passBaru, konfBaru ,passLama;
     private Button ChangeButtton;
     private ProgressDialog progressDialog;
     private FirebaseUser user;
     private FirebaseAuth mAuth;
+    private String newPass, konNewPass,passlama;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ganti_password);
 
-        //Inisialisasi Widget dan Membuat Objek dari FirebaeUser
-        passLama = findViewById(R.id.ti_ganti_password_passlama);
-        passBaru = findViewById(R.id.ti_ganti_password_passbaru);
-        konfBaru = findViewById(R.id.ti_ganti_password_konfirmpassbaru);
+        //Inisialisasi Widget dan Membuat Objek dari FirebaseUser
+        passLama = (EditText) findViewById(R.id.ti_ganti_password_passlama);
+        passBaru = (EditText) findViewById(R.id.ti_ganti_password_passbaru);
+        konfBaru = (EditText) findViewById(R.id.ti_ganti_password_konfirmpassbaru);
         ChangeButtton = findViewById(R.id.btn_ganti_password_simpan);
         user = FirebaseAuth.getInstance().getCurrentUser();
         mAuth = FirebaseAuth.getInstance();
@@ -63,10 +64,9 @@ public class GantiPasswordActivity extends AppCompatActivity implements View.OnC
     }
 
     private TextWatcher textWatcher = new TextWatcher() {
-
         String newPass = passBaru.getText().toString();
         String konNewPass = konfBaru.getText().toString();
-        String passlama = passLama.getText().toString() ;
+        String passlama = passLama.getText().toString();
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="@drawable/splashgambar">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        tools:context=".ui.DaftarActivity">
+
+        <RelativeLayout
+            android:id="@+id/rv_login_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_login_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/background_edittext"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:id="@+id/tv_daftar_judul"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Daftar Pengepul"
+                    android:layout_marginTop="30dp"
+                    android:textColor="#000000"
+                    android:fontFamily="@font/gothammedium_1"
+                    android:textSize="30dp" />
+
+                <EditText
+                    android:id="@+id/et_daftar_nama"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="45dp"
+                    android:background="@drawable/background_edittext"
+                    android:hint="@string/daftarnama"
+                    android:fontFamily="@font/gothamlight"
+                    android:textColorHint="@android:color/black"
+                    android:inputType="text"
+                    android:paddingTop="16dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="14dp"/>
+
+                <EditText
+                    android:id="@+id/et_daftar_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/background_edittext"
+                    android:hint="@string/daftaremail"
+                    android:fontFamily="@font/gothamlight"
+                    android:textColorHint="@android:color/black"
+                    android:inputType="textEmailAddress"
+                    android:paddingTop="16dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="14dp"/>
+
+                <EditText
+                    android:id="@+id/et_daftar_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/background_edittext"
+                    android:hint="@string/daftarpassword"
+                    android:fontFamily="@font/gothamlight"
+                    android:textColorHint="@android:color/black"
+                    android:inputType="textPassword"
+                    android:paddingTop="16dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="14dp"/>
+
+                <EditText
+                    android:id="@+id/et_daftar_alamat"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/background_edittext"
+                    android:hint="@string/daftaralamat"
+                    android:fontFamily="@font/gothamlight"
+                    android:textColorHint="@android:color/black"
+                    android:inputType="text"
+                    android:paddingTop="16dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="14dp"/>
+
+                <EditText
+                    android:id="@+id/et_daftar_kodepos"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/background_edittext"
+                    android:hint="@string/daftarkodepos"
+                    android:fontFamily="@font/gothamlight"
+                    android:textColorHint="@android:color/black"
+                    android:inputType="number"
+                    android:paddingTop="16dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="14dp"/>
+
+                <EditText
+                    android:id="@+id/et_daftar_nomertelpon"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/background_edittext"
+                    android:hint="@string/daftarNomerTelpon"
+                    android:fontFamily="@font/gothamlight"
+                    android:textColorHint="@android:color/black"
+                    android:inputType="number"
+                    android:paddingTop="16dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="14dp"/>
+
+                <Button
+                    android:id="@+id/btn_daftar_daftar"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_below="@+id/et_login_password"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/background_button"
+                    android:textColor="@android:color/white"
+                    android:text="@string/daftar"
+                    android:fontFamily="@font/gothammedium"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_daftar_kembali"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/kembali"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/gotham_bookitalic"
+            android:textColor="#FFFFFF"
+            android:layout_below="@+id/rv_login_box"/>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="180dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tv_daftar_kembali"
+            android:background="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/tv_daftar_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/punyaakun"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/gotham_bookitalic"
+            android:textColor="#FFFFFF"
+            android:layout_below="@+id/divider"/>
+
+    </RelativeLayout>
+</ScrollView>

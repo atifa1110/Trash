@@ -10,15 +10,22 @@ public class User {
     private String nomertelpon;
 
 
-    public User(String uid, String nama, String email ,String alamat,String kodepos,String nomertelpon) {
+    public User(String uid, String nama ,String alamat,String kodepos,String nomertelpon) {
         this.uid = uid;
         this.nama = nama;
-        this.email = email;
         this.alamat = alamat;
         this.kodepos = kodepos;
         this.nomertelpon = nomertelpon;
     }
 
+    public User(String uid, String nama ,String email,String alamat,String kodepos,String nomertelpon) {
+        this.uid = uid;
+        this.nama = nama;
+        this.email=email;
+        this.alamat = alamat;
+        this.kodepos = kodepos;
+        this.nomertelpon = nomertelpon;
+    }
     public void setUid(String uid) {
         this.uid = uid;
     }

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.codinginflow.trashapp.Activity.DaftarPengepulActivity;
 import com.codinginflow.trashapp.Activity.LoginActivity;
 import com.codinginflow.trashapp.Activity.EditProfileActivity;
 import com.codinginflow.trashapp.Activity.GantiPasswordActivity;
@@ -70,7 +71,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         firebaseAuth = FirebaseAuth.getInstance();
 
         Profile();
-        Picture();
+        //Picture();
 
         editProfil.setOnClickListener(this);
         editPassword.setOnClickListener(this);
@@ -119,6 +120,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.tv_profile_daftarpengepul :
+                startActivity(new Intent(getContext(), DaftarPengepulActivity.class));
+                break;
             case R.id.tv_profile_edit :
                 startActivity(new Intent(getContext(), EditProfileActivity.class));
                 break;

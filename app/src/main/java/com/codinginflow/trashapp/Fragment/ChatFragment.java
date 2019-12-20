@@ -48,11 +48,18 @@ public class ChatFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rv_chat_pengepul);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        readUser();
+
+        return view;
+    }
+
+    private void readUser(){
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("Pengepul").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<Pengepul> pengepuls = new ArrayList<>();
+                pengepuls.clear();
                 for (DataSnapshot d:dataSnapshot.getChildren()) {
                     String id = d.getKey(),
                             nama = d.child("nama").getValue().toString(),
@@ -72,8 +79,5 @@ public class ChatFragment extends Fragment {
 
             }
         });
-
-        return view;
     }
-
 }
