@@ -8,6 +8,7 @@ public class Pengepul {
     private String alamatUsaha;
     private String kodepos;
     private String nomertelpon;
+    private String harga;
 
     public Pengepul(){
 
@@ -20,6 +21,16 @@ public class Pengepul {
         this.alamatUsaha = alamatUsaha;
         this.kodepos = kodepos;
         this.nomertelpon = nomertelpon;
+    }
+
+    public Pengepul(String uid, String nama, String namaUsaha, String alamatUsaha, String kodepos, String nomertelpon, String harga) {
+        this.uid = uid;
+        this.nama = nama;
+        this.namaUsaha = namaUsaha;
+        this.alamatUsaha = alamatUsaha;
+        this.kodepos = kodepos;
+        this.nomertelpon = nomertelpon;
+        this.harga = harga;
     }
 
     public String getUid() {
@@ -69,4 +80,13 @@ public class Pengepul {
     public void setNama(String nama) {
         this.nama = nama;
     }
+
+    public String  getHarga() {
+        return harga;
+    }
+
+    public void setHarga(String harga) {
+        this.harga = harga;
+    }
+
 }

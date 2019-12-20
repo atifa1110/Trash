@@ -23,4 +23,5 @@
     <string name="daftaralamat">Alamat</string>
     <string name="daftarkodepos">Kode Pos</string>
     <string name="daftarNomerTelpon">Nomer Telpon</string>
+    <string name="buy">Pesan</string>
 </resources>

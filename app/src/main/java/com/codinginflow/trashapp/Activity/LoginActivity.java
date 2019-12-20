@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 progress.show();
                 SignIn();
                 break;
-            case R.id.btn_forgot_password_simpan :
+            case R.id.tv_login_forgot :
                 intent = new Intent(this,ForgotPasswordActivity.class);
                 startActivity(intent);
                 break;

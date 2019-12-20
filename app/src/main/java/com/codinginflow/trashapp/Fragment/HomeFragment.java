@@ -54,7 +54,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        sliderLayout = view.findViewById(R.id.imageSlider);
+        //sliderLayout = view.findViewById(R.id.imageSlider);
         //setSliderLayout();
         recyclerView = view.findViewById(R.id.rv_home_kategori);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));

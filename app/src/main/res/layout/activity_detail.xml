@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".Activity.DetailActivity">
+
+    <!--Scroll view menjadi root untuk tampilan halamannya supaya bisa di scroll-->
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/paper"/>
+
+            <TextView
+                style="@style/TextContent.Small.White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="#4D000000"
+                android:drawableLeft="@drawable/ic_collections"
+                android:drawablePadding="4dp"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="Dummy"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@android:color/white" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/namausaha"
+            style="@style/TextContent.Black"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="8dp"
+            android:text="namausaha"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/alamat"
+            style="@style/TextContent.Subtitle"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:text="alamat" />
+
+
+        <TextView
+            style="@style/TextContent.Subtitle"
+            android:layout_marginBottom="8dp"
+            android:text="Silahkan masukkan pesanan" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/et_detail_angka"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_text_kg"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Kg"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/hitung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hitung"
+            android:layout_gravity="center"/>
+
+        <TextView
+            style="@style/TextContent.Subtitle"
+            android:layout_marginBottom="8dp"
+            android:text="Total Harga" />
+
+        <TextView
+            android:id="@+id/harga"
+            style="@style/TextContent.Subtitle"
+            android:layout_marginBottom="8dp"
+            android:text="5000" />
+
+        <TextView
+            style="@style/TextContent.Subtitle"
+            android:layout_marginBottom="8dp"
+            android:text="Nama Pengepul" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:src="@drawable/orang" />
+
+            <TextView
+                android:id="@+id/namapengepul"
+                style="@style/TextContent"
+                android:layout_toEndOf="@+id/profile_image"
+                android:layout_toRightOf="@id/profile_image"
+                android:text="nama pengepul"
+                android:layout_centerInParent="true"
+                android:textColor="@android:color/black" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_detailproduk_mau"
+            style="@style/ButtonGeneral"
+            android:text="@string/buy" />
+
+    </LinearLayout>
+
+</ScrollView>
