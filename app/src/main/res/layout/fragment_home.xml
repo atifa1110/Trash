@@ -11,6 +11,10 @@
         android:orientation="vertical"
         android:layout_height="wrap_content"
         tools:context=".Fragment.HomeFragment">
+        <com.smarteist.autoimageslider.SliderLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:id="@+id/imageSlider"/>
 
         <RelativeLayout
             android:id="@+id/rv_home_saldo"

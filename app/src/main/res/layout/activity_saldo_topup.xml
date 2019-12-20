@@ -126,7 +126,7 @@
 
                 </LinearLayout>
                 <TextView
-                    android:id="@+id/tv_tup_up_textpilih"
+                    android:id="@+id/tv_tup_up_textpilih2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/gotham_bold"
@@ -143,7 +143,7 @@
                     android:paddingTop="16dp"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:paddingBottom="14dp"
+                    android:paddingBottom="14dp"></EditText>
 
 
 
