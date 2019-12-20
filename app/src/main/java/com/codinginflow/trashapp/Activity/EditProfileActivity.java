@@ -53,9 +53,9 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
         btnSimpan = findViewById(R.id.btn_editprofile_simpan);
         progress = new ProgressDialog(this);
-        progress2 = new ProgressDialog(this);
+       progress2 = new ProgressDialog(this);
         progress.setMessage("saving changes, please wait");
-        progress2.setMessage("fetching data");
+       progress2.setMessage("fetching data");
 
         btnSimpan.setOnClickListener(this);
         //ivFoto.setOnClickListener(this);

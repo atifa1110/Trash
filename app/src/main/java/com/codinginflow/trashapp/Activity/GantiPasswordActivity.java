@@ -44,12 +44,7 @@ public class GantiPasswordActivity extends AppCompatActivity implements View.OnC
         mAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Updating Password...");
-
         ChangeButtton.setOnClickListener(this);
-
-        passLama.addTextChangedListener(textWatcher);
-        passBaru.addTextChangedListener(textWatcher);
-        konfBaru.addTextChangedListener(textWatcher);
     }
 
     @Override
@@ -62,28 +57,6 @@ public class GantiPasswordActivity extends AppCompatActivity implements View.OnC
                 break;
         }
     }
-
-    private TextWatcher textWatcher = new TextWatcher() {
-        String newPass = passBaru.getText().toString();
-        String konNewPass = konfBaru.getText().toString();
-        String passlama = passLama.getText().toString();
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            ChangeButtton.setEnabled(!newPass.isEmpty()&&!konNewPass.isEmpty()&&!passlama.isEmpty());
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    };
-
 
     private void updatePassword(){
         if (inputValidated()){
@@ -102,7 +75,7 @@ public class GantiPasswordActivity extends AppCompatActivity implements View.OnC
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
                                     Toast.makeText(GantiPasswordActivity.this, "password updated", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(GantiPasswordActivity.this, MainActivity.class);
+                                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
                                     startActivity(intent);
                                     finish();
                                 } else{
