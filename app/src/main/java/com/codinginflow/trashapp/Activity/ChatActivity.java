@@ -140,11 +140,12 @@ public class ChatActivity extends AppCompatActivity {
                 for (DataSnapshot d:dataSnapshot.getChildren()) {
                     String idSender = d.child("sender").getValue().toString();
                     String idreceiver = d.child("receiver").getValue().toString();
+                    String message = d.child("message").getValue().toString();
 
                     //Chat chat = d.getValue(Chat.class);
                     if(idreceiver.equals(Idreceiver) && idSender.equals(Idsender) ||
                         idreceiver.equals(Idsender) && idSender.equals(Idreceiver)){
-                            Chat chat = new Chat(idSender,idreceiver);
+                            Chat chat = new Chat(idSender,idreceiver,message);
                             chats.add(chat);
                         }
                         chatAdapter = new ChatAdapter(ChatActivity.this,chats);

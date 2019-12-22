@@ -1,8 +1,11 @@
 package com.codinginflow.trashapp.Fragment;
 
 
+import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,15 +15,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.codinginflow.trashapp.Activity.DaftarPengepulActivity;
 import com.codinginflow.trashapp.Activity.LoginActivity;
 import com.codinginflow.trashapp.Activity.EditProfileActivity;
 import com.codinginflow.trashapp.Activity.GantiPasswordActivity;
 import com.codinginflow.trashapp.R;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,11 +39,17 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -43,10 +58,16 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileFragment extends Fragment implements View.OnClickListener{
 
     private CircleImageView iv_foto;
-    private TextView nama, editProfil, editPassword, syaratKetentuan, keluar;
+    private TextView nama, editProfil, editPassword, syaratKetentuan, keluar ,daftarpengepul;
     private FirebaseAuth firebaseAuth;
     private ProgressBar progressBar;
     private View mainView;
+
+    private StorageReference storageReference;
+    private static final int IMAGE_REQUEST = 1;
+    private Uri imageUri;
+    private StorageTask uploadTask;
+    private DatabaseReference databaseReference;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -61,6 +82,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
 
         iv_foto = view.findViewById(R.id.iv_profile_foto);
         nama = view.findViewById(R.id.tv_profile_nama);
+        daftarpengepul = view.findViewById(R.id.tv_profile_daftarpengepul);
         editProfil = view.findViewById(R.id.tv_profile_edit);
         editPassword = view.findViewById(R.id.tv_profile_ganti_pass);
         syaratKetentuan = view.findViewById(R.id.tv_profile_syarat_dan_ketentuan);
@@ -68,13 +90,15 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         //progressBar = rootView.findViewById(R.id.pb_profile);
         mainView = view.findViewById(R.id.main_view_profile);
 
+        storageReference = FirebaseStorage.getInstance().getReference("uploads");
         firebaseAuth = FirebaseAuth.getInstance();
 
         Profile();
-        //Picture();
+        Picture();
 
         editProfil.setOnClickListener(this);
         editPassword.setOnClickListener(this);
+        daftarpengepul.setOnClickListener(this);
         keluar.setOnClickListener(this);
         syaratKetentuan.setOnClickListener(this);
 
@@ -82,7 +106,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
     }
 
     public void Profile(){
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(firebaseAuth.getCurrentUser().getUid());
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(firebaseAuth.getCurrentUser().getUid());
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -128,7 +152,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                 break;
             case R.id.tv_profile_ganti_pass :
                 startActivity(new Intent(getActivity().getApplication(), GantiPasswordActivity.class));
-
                 break;
             case R.id.tv_profile_syarat_dan_ketentuan :
                 break;

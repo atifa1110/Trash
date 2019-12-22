@@ -24,7 +24,8 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_profile_foto"
                 android:layout_width="100dp"
-                android:layout_height="100dp" />
+                android:layout_height="100dp"
+                android:src="@mipmap/ic_launcher"/>
 
             <TextView
                 android:layout_marginStart="20dp"
