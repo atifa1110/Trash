@@ -3,6 +3,7 @@ package com.codinginflow.trashapp.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.codinginflow.trashapp.R;
 import com.codinginflow.trashapp.model.Pengepul;
+import com.codinginflow.trashapp.model.pesanan;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,6 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.smarteist.autoimageslider.DefaultSliderView;
 import com.smarteist.autoimageslider.SliderLayout;
+
+import java.util.Calendar;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -34,6 +38,7 @@ public class DetailActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private String id, nama, namausaha, alamatusaha, kodepos, nomertelp,hrg;
+    private pesanan Pesanan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +67,7 @@ public class DetailActivity extends AppCompatActivity {
         harga.setText(hrg);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Pesanan");
         //progressBar = findViewById(R.id.p_detailproduk_progres);
 
         hitung.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +77,19 @@ public class DetailActivity extends AppCompatActivity {
                 Double kg = Double.parseDouble(total.getText().toString());
                 Double hargaTotal = angka*kg;
                 harga.setText(hargaTotal.toString());
+            }
+        });
+        mau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                String waktu = calendar.getTime().toString();
+                String date[] = waktu.split(" ");
+                Pesanan = new pesanan(firebaseAuth.getCurrentUser().getUid(), namausaha, Double.parseDouble(harga.getText().toString()), ""+date[0]+" "+date[2]+" "+date[1]+" "+date[5],false);
+                databaseReference.push().setValue(Pesanan);
+                Toast.makeText(getApplicationContext(), "Pesanan Berhasil didaftarkan, mohon tunggu konfirmasi", Toast.LENGTH_LONG);
+                Intent intent = new Intent(DetailActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
