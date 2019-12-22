@@ -53,9 +53,9 @@ public class KategoriActivity extends AppCompatActivity {
                         String id = d.getKey(),
                                 nama = d.child("nama").getValue().toString(),
                                 alamatusaha = d.child("alamatusaha").getValue().toString(),
+                                harga = d.child("harga").getValue().toString(),
                                 kodepos = d.child("kodepos").getValue().toString(),
                                 namausaha = d.child("namausaha").getValue().toString(),
-                                harga = d.child("harga").getValue().toString(),
                                 nomertelpon = d.child("nomertelpon").getValue().toString();
                         Pengepul pengepul = new Pengepul(id,nama,namausaha,alamatusaha,kodepos,nomertelpon,harga);
                         Log.d("item",pengepul.getNama());
