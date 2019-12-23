@@ -53,7 +53,7 @@ public class PesananFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pesanan, container, false);
         firebaseAuth = FirebaseAuth.getInstance();
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycleViewPesanan);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv_pesanan);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();

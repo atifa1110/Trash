@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.DetailActivity"></activity>
-        <activity android:name=".Activity.DaftarPengepulActivity" />
+        <activity android:name=".Activity.DaftarPengepulActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Activity.KategoriActivity" />
         <activity
             android:name=".Activity.ChatActivity"

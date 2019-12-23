@@ -8,7 +8,7 @@
     tools:context=".Fragment.PesananFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_chat_pengepul"
+        android:id="@+id/rv_pesanan"
         android:layout_height="match_parent"
         android:layout_width="match_parent"/>
 
