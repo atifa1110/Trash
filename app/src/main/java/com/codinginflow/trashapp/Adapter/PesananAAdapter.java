@@ -11,41 +11,38 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.codinginflow.trashapp.R;
 import com.codinginflow.trashapp.model.pesanan;
+import com.codinginflow.trashapp.model.pesananA;
 
 import java.util.ArrayList;
 
-public class PesananAdapter extends RecyclerView.Adapter<PesananAdapter.MyViewHolder> {
+public class PesananAAdapter extends RecyclerView.Adapter<PesananAAdapter.MyViewHolder> {
     private Context context;
-    private ArrayList<pesanan> pesanans;
+    private ArrayList<pesananA> pesananAs;
 
-    public PesananAdapter(Context context , ArrayList<pesanan> pesanans){
+    public PesananAAdapter(Context context , ArrayList<pesananA> pesananAs){
         this.context = context;
-        this.pesanans = pesanans;
+        this.pesananAs = pesananAs;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.pesananitem,parent,false);
-        return new PesananAdapter.MyViewHolder(view);
+        return new PesananAAdapter.MyViewHolder(view);
     }
 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final pesanan Pesanan = pesanans.get(position);
-        holder.namaToko.setText(Pesanan.getNamaPengepul());
-        if (!Pesanan.isStatus()){
-            holder.status.setText("On Progress");
-        }else{
-            holder.status.setText("Trip Complete");
-        }
-        holder.tanggal.setText(Pesanan.getTanggal());
+        final pesananA PesananA = pesananAs.get(position);
+        holder.namaToko.setText(PesananA.getNamaPengepul());
+        holder.status.setText("Trip Complete");
+        holder.tanggal.setText(PesananA.getTanggal());
     }
 
     @Override
     public int getItemCount() {
-        return pesanans.size();
+        return pesananAs.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -53,6 +50,7 @@ public class PesananAdapter extends RecyclerView.Adapter<PesananAdapter.MyViewHo
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+
             namaToko = itemView.findViewById(R.id.lineCard1);
             status = itemView.findViewById(R.id.lineCard2);
             tanggal = itemView.findViewById(R.id.lineCard3);
