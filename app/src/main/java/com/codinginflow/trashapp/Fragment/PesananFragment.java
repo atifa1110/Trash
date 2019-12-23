@@ -1,6 +1,8 @@
 package com.codinginflow.trashapp.Fragment;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,8 +14,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toolbar;
 
+import com.codinginflow.trashapp.Activity.HistoriPesanan;
 import com.codinginflow.trashapp.Activity.KategoriActivity;
 import com.codinginflow.trashapp.Adapter.PesanAdapter;
 import com.codinginflow.trashapp.Adapter.PesananAdapter;
@@ -21,6 +25,7 @@ import com.codinginflow.trashapp.R;
 import com.codinginflow.trashapp.model.Pengepul;
 import com.codinginflow.trashapp.model.PesananItem;
 import com.codinginflow.trashapp.model.pesanan;
+import com.codinginflow.trashapp.model.pesananA;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,6 +45,7 @@ public class PesananFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private PesananAdapter pesananAdapter;
     private RecyclerView recyclerView;
+    private Button tombolHistory;
 
     public PesananFragment() {
         // Required empty public constructor
@@ -54,7 +60,16 @@ public class PesananFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycleViewPesanan);
+        tombolHistory = (Button) view.findViewById(R.id.buttonHistory);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        tombolHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), HistoriPesanan.class);
+                startActivity(intent);
+            }
+        });
 
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("Pesanan").addValueEventListener(new ValueEventListener() {
@@ -64,6 +79,7 @@ public class PesananFragment extends Fragment {
                 for (DataSnapshot d:dataSnapshot.getChildren()){
                     String uidUser = d.child("uidUser").getValue().toString();
                     if (firebaseAuth.getCurrentUser().getUid().equals(uidUser)){
+                        if (d.child("status").getValue().toString().equals("false")){
                             String id = d.getKey(),
                                     uid = d.child("uidUser").getValue().toString(),
                                     namaPengepul = d.child("namaPengepul").getValue().toString(),
@@ -73,11 +89,11 @@ public class PesananFragment extends Fragment {
                             pesanan pesanan = new pesanan(uid, namaPengepul, Double.parseDouble(hargaTotal),tanggal,false);
                             Log.d("item",pesanan.getNamaPengepul());
                             itemPesanan.add(pesanan);
+                        }
                     }
                     pesananAdapter = new PesananAdapter(getActivity(),itemPesanan);
                     recyclerView.setAdapter(pesananAdapter);
                 }
-
             }
 
             @Override

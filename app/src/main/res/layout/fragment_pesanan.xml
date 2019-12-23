@@ -2,17 +2,27 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/hijauTerang"
     tools:context=".Fragment.PesananFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewPesanan"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="678dp"
+        android:layout_marginTop="50dp"
         android:background="@color/hijauTerang"
         android:padding="4dp"
-        android:layout_marginTop="8dp"
         android:scrollbars="vertical" />
+
+    <Button
+        android:id="@+id/buttonHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="History"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="310dp"
+        android:background="@color/colorPrimary"
+        android:textColor="#000000"/>
 
 </FrameLayout>

@@ -11,46 +11,41 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.codinginflow.trashapp.R;
 import com.codinginflow.trashapp.model.pesanan;
+import com.codinginflow.trashapp.model.pesananA;
 
 import java.util.ArrayList;
 
-public class PesananAdapter extends RecyclerView.Adapter<PesananAdapter.MyViewHolder> {
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder> {
     private Context context;
-    private ArrayList<pesanan> pesanans;
+    private ArrayList<pesananA> histotys;
 
-    public PesananAdapter(Context context , ArrayList<pesanan> pesanans){
+    public HistoryAdapter(Context context , ArrayList<pesananA> histotys){
         this.context = context;
-        this.pesanans = pesanans;
+        this.histotys = histotys;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.pesananitem,parent,false);
-        return new PesananAdapter.MyViewHolder(view);
+        return new HistoryAdapter.MyViewHolder(view);
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final pesanan Pesanan = pesanans.get(position);
-        holder.namaToko.setText(Pesanan.getNamaPengepul());
-        if (!Pesanan.isStatus()){
-            holder.status.setText("On Progress");
-        }else{
-            holder.status.setText("Trip Complete");
-        }
-        holder.tanggal.setText(Pesanan.getTanggal());
+        final pesananA PesananA = histotys.get(position);
+        holder.namaToko.setText(PesananA.getNamaPengepul());
+        holder.status.setText("Trip Complete");
+        holder.tanggal.setText(PesananA.getTanggal());
     }
 
     @Override
     public int getItemCount() {
-        return pesanans.size();
+        return histotys.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView namaToko, status, tanggal;
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             namaToko = itemView.findViewById(R.id.lineCard1);
